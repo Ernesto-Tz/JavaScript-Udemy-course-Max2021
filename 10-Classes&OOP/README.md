@@ -114,3 +114,23 @@ Object literal notation is very useful for:
 Classes should be consider when: 
 - An object needs to be re-created over and over. 
 - Object duplication is easier.
+
+
+## 253. Inheritance
+
+JavaScript only allows to inherit from a single class
+
+### Constructors and Inheritance
+
+The constructor of the parent class will only be executed if the child class does not have a constructor defined or if it is called somewhere else in the code. By the default the child constructor will be executed.
+
+### `Super()`
+
+This function will call the constructor of the parent class. If we have a constructor on the parent class, it is very likely that we would like it to be executed, but if the child class does not executes that constructor it will never be called. That's why we use the `super()` function.
+> We have to place `super()` before declaring any other field inside the constructor:
+```JavaScript
+ constructor(renderHookId, property1){
+        super(renderHookId);
+        this.property1 = property1;
+    }
+```
