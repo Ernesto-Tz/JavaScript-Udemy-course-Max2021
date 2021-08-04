@@ -18,6 +18,8 @@ class Component {
         this.hookId = renderHookId;
     }
     
+    render() {}
+
     createRootElement (tag, cssClasses, attributes) {
         const rootElement = document.createElement(tag);
         if(cssClasses){
@@ -68,7 +70,7 @@ class ProductItem extends Component {
 // This class is a logic container
 class ProductList extends Component {
     products = [
-        new Product('A pillow','https://www.midwives2020.org/wp-content/uploads/2021/02/719-00201_main-shot_01_therapur-cool-pillow.jpg', 19.99, 'A soft pillow'), 
+        new Product('A pillow','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx7I6WmbSH7bMTfDUWU9HZvt-tKkWa8wb_nw&usqp=CAU', 19.99, 'A soft pillow'), 
         new Product('Carpet', 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Wollteppich_1.jpg/1200px-Wollteppich_1.jpg', 89.99, 'A carpet you might like')
     ];
 

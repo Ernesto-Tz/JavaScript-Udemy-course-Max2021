@@ -134,3 +134,90 @@ This function will call the constructor of the parent class. If we have a constr
         this.property1 = property1;
     }
 ```
+
+### Overriding methods
+
+When using overriding we need to make sure that the constructor is using the method to be overridden with the prefix `this.`. As mentioned before the `this.` keyword will be related to the object calling the method, in this case the child class.
+
+```JavaScript
+class Component {
+    constructor(renderHookId){
+        this.hookId = renderHookId;
+        this.render(); //Method to override
+    }
+    
+    render() {} //Empty method defined on every child class.
+```
+
+### 256. First approach to **fetch**
+
+It is used to get data which will probably arrived from a database/server. We are trying to show this on the User Interface but we don't have the data quite yet. 
+
+### 257. Solution with arrow functions when `this.` points to an unexpected object
+
+Arrow functions do not care about the previous context on which `this.` was called it will always refer to the object in which it is found.
+
+### 258. Private vs Public
+
+- **Public**: All information which is used outside the class. (Methods, properties, fields).
+
+- **Private**: All information which is only used inside the class. (Methods, properties, fields).
+
+If we want to make anything private, we only need to add a `#` before the name of the method, property or field. However it is important to mention that every time we call it we need to use again the `#`.
+```JavaScript
+class ShoppingCart extends Component {
+    #items = [];
+
+    function fillUpItems() {
+        for (let i = 0; #items.length()===5;i++){
+            #items[i] = 'Element: ' + (i+1);
+        }
+    }
+}
+```
+
+### Getters and Setters
+
+**Syntax:**
+
+```JavaScript
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  language: "en",
+  get lang() {
+    return this.language;
+  }
+  set lang(v) {
+    this.language = v;
+  }
+};
+person.lang; // => en // uses getter
+person.lang = 'sh'; // uses setter to set person.language
+```
+
+>Remember to use a different name for the setter function and the parameter, if not it will run into an exception for calling itself multiple times.
+
+### `instanceof`
+
+This keyword is used instead of `typeof` when we want to know which type of object an instance is made from.
+
+```JavaScript
+class Person{
+    name="Ernesto"
+}
+const p = new Person();
+p instanceof Person; // This will return true
+
+//We can also use the following notation to print more in the console.
+console.dir(object);
+```
+There are more built-in  objects in JavaScript:
+- HTMLElement
+- HTMLButtonElement
+
+### Object Descriptors
+
+This is kind of confusing. Check video 262.
+
+It talks about the 4 values which are assigned to each property or function inside an object `configurable`, `enumerable`, `value` and `writable`
