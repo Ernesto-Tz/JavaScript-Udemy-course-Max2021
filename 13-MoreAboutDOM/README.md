@@ -33,3 +33,73 @@ We can use the method `getBoundingClientRect()` which will return the coordinate
 ```JavaScript
 elementSelected.getBoundingClientRect();
 ```
+
+Some other methods are:
+- `$0.offsetTop`
+- `$0.offsetLeft`
+- `$0.clienTop`
+- `$0.clienLeft`
+- `$0.offsetWidth`
+- `$0.offsetHeight`
+- `$0.scrollHeight`
+- `$0.scrollTop`
+- `window.innerWidth`
+- `window.innerWidth`
+- `window.innerHeight`
+- `document.documentElement.clientWidth` More reliable
+- `document.documentElement.clientHeight` More reliable
+
+### Setting coordinates and dimentions into a DOM element
+
+We can use the methods mentioned above to obtain the information. However, we can not use them to assign the new values. For this we will need to use CSS:
+
+```JavaScript
+const buttonEl = docuement.getElementById("Button1");
+const btnLeft = buttonEl.offsetLeft;
+const newBtnPos = btnLeft + 120;
+buttonEl.style.left = newBtnPos + 'px;';
+
+// In order for this to work we should include:
+
+buttonEl.style.position = 'absolute';
+```
+
+The position of all elements is `reative` by defautl, if we want to modify it we need to make it `absolute`
+
+It is important to rememeber that coordinates ignore if we have an inner scroll. But we have access to this information with the `scrollTop` property.
+
+### Scroll with JavaScript
+
+We can use the following methods to modify how much to scroll.
+- `scrollTo(x,y)`
+- `scrollBy(x,y)`
+- `scrollIntoView()`
+
+The last one will make sure that when something happens with the related element the view will position the user into the new coordinates.
+
+## Template tag
+
+We can include here the "to-be-used" HTML code which won't be render right on the start but later on we would like to work with it.
+
+## Running Script Dynamically
+
+We can have the situation in which we have a pice of code which is not used all the time therefore we only would like to download that file when necessary. For example running Analytics of a certain event. The solution for this is to create a dynamyc script. We can see a great example at video 296.
+
+## Timers and Intervals
+
+`setTimeout(X,Y);` - *X*: is a function which will be executed when the timer expires. *Y* - the amount of time in miliseconds.
+
+`setInterval(X,Y);` - Instead of executing the *X* function once, it will execute the function every *Y* seconds.
+
+`clearTimeout()` to stop.
+`clearInterval()` to stop
+
+## location, history, navigator objects on DOM
+
+**Location** we can use it to navigate the user to another url. `location.href = 'newURL'`
+
+We can use `location.pathname` to see in which path the user is located from the application and based on that executed some JavaScript code. Video 298.
+
+**History**  we can use `history.back()` to take the user to their previous visited page.
+
+**Navigator** returns information about the browser and user. For example: geolocation, clipboard, etc.
