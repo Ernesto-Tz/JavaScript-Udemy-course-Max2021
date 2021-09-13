@@ -94,7 +94,7 @@ We can have the situation in which we have a pice of code which is not used all 
 `clearTimeout()` to stop.
 `clearInterval()` to stop
 
-## location, history, navigator objects on DOM
+## Location, history and navigator objects on DOM
 
 **Location** we can use it to navigate the user to another url. `location.href = 'newURL'`
 
@@ -102,4 +102,35 @@ We can use `location.pathname` to see in which path the user is located from the
 
 **History**  we can use `history.back()` to take the user to their previous visited page.
 
-**Navigator** returns information about the browser and user. For example: geolocation, clipboard, etc.
+**Navigator** returns information about the browser and user. It allows you to interact with the machine information. For example: geolocation, clipboard, etc.
+
+```JavaScript
+navigator.geolocation.getCurrentPosition((data) => {console.log(data)});
+```
+
+##  Working with dates
+
+`new Date()` .- this object returns the current date.
+ > We can store this object and use its different methods.
+
+ We can also pass a date into the constructor parameter and create a `date` object with the specifics:
+
+ ```JavaScript
+ const date1 = new Date('12/06/1990');
+ /// This will create a Date object with the date 12th of June 1990.
+ ```
+
+ We can use mathematical operations between `Date` objects but the result will be given in miliseconds. We will need to divide that into the required format (days, months, hours, etc.)
+
+ ## Error Object
+
+ ```JavaScript
+const costumError = new Error('something went wrong!');
+/// we can throw that object in case of an error
+throw costumError;
+
+/// We can add additional information to the Error object
+costumError.code = 404;
+ ```
+
+ It is advisable to `throw` some Error object because it gives us additional information. 
