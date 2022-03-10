@@ -150,3 +150,37 @@ list.addEventListener('click', event =>{
 It can become problematic if we have a more complex structure. For example having multiple elements inside the list element.
 
 > For this problem we solved it by using `closest()` for DOM traversal <video 314>.
+
+## Trigger DOM events programmatically
+
+This is useful when we want to trigger some event from a DOM element. For example we want to submit a form if something changes on the DOM, for this we will use the form object and call the `submit()` method. There is also the `click()` method for buttons and other options.
+
+```JavaScript
+const button = document.querySelector('button');
+const form = document.querySelector('form');
+
+const buttonClickHandler = () => {
+    alert('Button was clicked!');
+    form.submit();
+}
+
+button.addEventListener('click', buttonCLickHandler, true);
+```
+
+## `this` keyword on events
+
+If we are not using an arrow function `this` will refer to the element which is registered for the event listener.
+
+## Drag and Drop
+
+1. Make the HTML element draggable.
+2. Listen to `dragstart` event
+3. Accept drop via `dragend` and `dragover` events => preventDefault()
+4. Listen to drop event & Update data.
+
+To connect the drag we use the `event.dataTransfer.setData(text/plain, this.id)` method inside the event listener. (We can find more information on MDN).
+
+We can have different type of drag and drop operations such as: copy, move, etc.
+
+We also need to create a droppable area. For this we need to create a new event listener, one for `dragenter` and one for `dragover`
+
