@@ -24,6 +24,8 @@ person.greet();
 JavaScript is a prototype based language.
 Constructor Functions and prototypes power JavaScript Objects.
 
-**Prototypes** are objects themselves
+**Prototypes** are objects themselves.
+
+Every time we create an object, an additional prototype is created as well, this is like a "fallback object"
 
 > Functions are objects!!
