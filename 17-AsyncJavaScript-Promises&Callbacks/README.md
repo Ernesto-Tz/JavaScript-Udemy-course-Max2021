@@ -58,3 +58,30 @@ After creation we can call the promise by declaring `then` and `catch`.
   console.log('Getting position...'); // Executed normally
 ```
 We can define multiple `catch`.
+
+## Async - await
+
+We can only in functions. We add the keyword `async` right before the declaration of the function.
+When we declare `async` on a function, JavaScript wraps everything inside that functions and creates a promise with it. It will in fact return a promise by default.  
+It still uses promises; behind the scenes it transforms our code into `then` statements. It is a normal promise with a new syntax which will be transform. 
+It does not change the way JS works, it just changes how it looks. One of the fallbacks is that we lost the `catch` block which allowed us to have error handling, we will do it with a normal `try - catch` block
+
+```JavaScript
+async function trackUserHandler() {
+  // let positionData;
+  const posDate = await getPosition();
+  const timerData = await setTimer(2000);
+  console.log(posData,TimerData);
+}
+```
+
+It is great for writing shorter code. 
+
+## Promise.race()
+
+It gets an array of Promises and returns the result of the fastest Promise executed.
+
+## Useful links
+
+- [Promises](https://web.dev/promises/)
+- [Async](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
