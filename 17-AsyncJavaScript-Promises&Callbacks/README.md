@@ -21,47 +21,110 @@ It is built into the browser. It is part of the host environment. It basically r
 
 Allow us to write readable code with multiple callbacks.
 
-We create a promise as an object, it takes 2 functions as arguments `resolve` and `reject`.
+Promise is an **object**. The Promise object works as proxy for a value not necessarily known when the promise is created. It allows you to associate handlers with an asynchronous action’s eventual success value or failure reason. This lets asynchronous methods return values like synchronous methods: instead of immediately returning the final value, the asynchronous method returns a promise to supply the value at some point in the future.
+
+We create a promise as an object, it takes 1 argument => an anonymous function which will be the needed execution; this inner function takes 2 arguments which are callback functions => `resolve` and `reject`, they will be executed depending on the state of the promise.
 
 ```JavaScript
-const promise = new Promise((resolve, reject) => {
-    navigator.geolocation.getCurrentPosition(
-        (success) => {
-        resolve(success);
-        },
-        (error) => {
-        reject(error);
-        },
-    );
+const a = 4;
+const b = 4;
+
+const promise = new Promise(function(resolve, reject) {
+    // do thing, then…
+    console.log("working now...");
+    if (a === b) {
+    resolve("See, it worked!");
+    }
+    else {
+    reject(Error("It broke"));
+    }
+});
+
+promise.then((result) => {
+    console.log(result);
 });
 ```
 
-After creation we can call the promise by declaring `then` and `catch`.
-> Catch will be executed in case the promise resolution failed. All `then` executions previous to `catch` will be skipped but if there is a `then` after the `catch` they will be executed. Location of the `catch` is important.
+> After creating the promise we need to call it by executing `then()` and `catch()`. If the promise failed it is possible we get that result even without executing `then()`, however we won't be able to see the successful result unless we execute `then()`. 
+
+Inside the `then()` \ `catch()` an argument is needed which will be the value used to given back the result.
 
 ```JavaScript
- getPosition()
-    .then((posData) => { // If promise succeeded
-      positionData = posData;
-      return setTimer(2000);
+const a = 4;
+const b = 5;
+
+const promise = new Promise(function(resolve, reject) {
+    // do thing, then…
+    console.log("working now...");
+    if (a === b) {
+    resolve("See, it worked!");
+    }
+    else {
+    reject(Error("It broke"));
+    }
+});
+
+promise
+    .then((result) => {
+        console.log(result);
     })
-    .catch((err) => { //If promise failed
-      console.log(err);
-      return 'on we go...';
-    })
-    .then((data) => { //This will be executed no matter what
-      console.log(data, positionData);
+    .catch((result) => {
+        console.log(result);
     });
-  setTimer(1000).then(() => { // Nested Callback
-    console.log('Timer done!');
-  });
-  console.log('Getting position...'); // Executed normally
 ```
-We can define multiple `catch`.
+
+For scope reasons we create promises inside functions and return the promise itself, in that way the promise only has access to the necessary data.
+
+```JavaScript
+function checkIfEqual(a,b){
+  const promise = new Promise(function(resolve, reject) {
+      // do thing, then…
+      console.log("working now...");
+      if (a === b) {
+      resolve("See, it worked!");
+      }
+      else {
+      reject(Error("It broke"));
+      }
+  });
+  return promise;
+}
+
+
+checkIfEqual(5,6)
+    .then((result) => {
+        console.log(result);
+    })
+    .catch((result) => {
+        console.log(result);
+    });
+```
+
+`Catch()` will be executed in case the promise resolution failed. All `then()` executions previous to `catch` will be skipped but if there is any `then` after the `catch` they will be executed.   
+Location of the `catch` is important. We can define multiple `catch`.
+
+```JavaScript
+getPosition()
+  .then((posData) => { // If promise succeeded
+    positionData = posData;
+    return setTimer(2000);
+  })
+  .catch((err) => { //If promise failed
+    console.log(err);
+    return 'on we go...';
+  })
+  .then((data) => { //This will be executed no matter what
+    console.log(data, positionData);
+  });
+setTimer(1000).then(() => { // Nested Callback
+  console.log('Timer done!');
+});
+console.log('Getting position...'); // Executed normally
+```
 
 ## Async - await
 
-We can only in functions. We add the keyword `async` right before the declaration of the function.
+We can only use it in functions. We add the keyword `async` right before the declaration of the function.
 When we declare `async` on a function, JavaScript wraps everything inside that functions and creates a promise with it. It will in fact return a promise by default.  
 It still uses promises; behind the scenes it transforms our code into `then` statements. It is a normal promise with a new syntax which will be transform. 
 It does not change the way JS works, it just changes how it looks. One of the fallbacks is that we lost the `catch` block which allowed us to have error handling, we will do it with a normal `try - catch` block
@@ -83,5 +146,6 @@ It gets an array of Promises and returns the result of the fastest Promise execu
 
 ## Useful links
 
-- [Promises](https://web.dev/promises/)
+- [Promises by freeCodeCamp](https://www.freecodecamp.org/news/javascript-promises-explained/#:~:text=What%20is%20a%20promise%20in,operation%2C%20and%20its%20resulting%20value.)
+- [Promises by Web.dev](https://web.dev/promises/)
 - [Async](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
