@@ -129,5 +129,5 @@ class ParentComponent {
 
 Code will be executed once the Module is loaded. However, it will be only executed on the first time even if that file is required multiple times.
 
-> I think it makes sense because only te first time is when the file was actually requested.
+> I think it makes sense because only the first time is when the file was actually requested.
 
