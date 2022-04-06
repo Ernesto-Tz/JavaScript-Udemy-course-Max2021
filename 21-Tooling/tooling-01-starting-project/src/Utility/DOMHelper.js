@@ -1,35 +1,35 @@
-console.log('DOM Helper executing!');
+console.log('DOM Helper executing!')
 
 export class DOMHelper {
-  static clearEventListeners(element) {
-    const clonedElement = element.cloneNode(true);
+  static clearEventListeners (element) {
+    const clonedElement = element.cloneNode(true)
 
-    element.replaceWith(clonedElement);
+    element.replaceWith(clonedElement)
 
-    return clonedElement;
+    return clonedElement
   }
 
-  static moveElement(elementId, newDestinationSelector) {
-    const element = document.getElementById(elementId);
-    const destinationElement = document.querySelector(newDestinationSelector);
+  static moveElement (elementId, newDestinationSelector) {
+    const element = document.getElementById(elementId)
+    const destinationElement = document.querySelector(newDestinationSelector)
 
-    destinationElement.append(element);
-    element.scrollIntoView({ behavior: 'smooth' });
+    destinationElement.append(element)
+    element.scrollIntoView({ behavior: 'smooth' })
   }
 }
 
-export function clearEventListeners(element) {
-  const clonedElement = element.cloneNode(true);
+export function clearEventListeners (element) {
+  const clonedElement = element.cloneNode(true)
 
-  element.replaceWith(clonedElement);
+  element.replaceWith(clonedElement)
 
-  return clonedElement;
+  return clonedElement
 }
 
-export function moveElement(elementId, newDestinationSelector) {
-  const element = document.getElementById(elementId);
-  const destinationElement = document.querySelector(newDestinationSelector);
+export function moveElement (elementId, newDestinationSelector) {
+  const element = document.getElementById(elementId)
+  const destinationElement = document.querySelector(newDestinationSelector)
 
-  destinationElement.append(element);
-  element.scrollIntoView({ behavior: 'smooth' });
+  destinationElement.append(element)
+  element.scrollIntoView({ behavior: 'smooth' })
 }

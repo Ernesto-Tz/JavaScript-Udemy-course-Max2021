@@ -51,13 +51,13 @@ In order to use these tools we need to install node and npm. They will allow us 
 1. On a terminal go to the projects path and run `npm init`.
 2. Set up all configurations. 
 3. When finished it will add a "package.json" which will include all necessary dependencies on our project, npm will look at this file and install them all.
-4. Run `npm instal --save-dev NameOfPackage`. This lets npm know that we want that package as a development dependency of this project. Development dependency because it is code that I don't want to include on some server.
-5. We will now see a new file "package-lock.json" which includes all dependencies from other dependencies. Also we will see the "node_modules" folder.
+4. Run `npm instal --save-dev NameOfPackage`. This lets npm know that we want that package as a development dependency of this project. Development dependency because it is code that I don't want to include in some server once the project is deployed.
+5. We will see a new file "package-lock.json" which includes all dependencies from other dependencies. Also we will see the "node_modules" folder.
 
 ## ESLint 
 
-To start ESLint check the [documentation](https://eslint.org/docs/user-guide/getting-started).
-Configure ESLint [documentation](https://eslint.org/docs/user-guide/configuring/).
+To start ESLint check the [documentation](https://eslint.org/docs/user-guide/getting-started).   
+Configuration ESLint [documentation](https://eslint.org/docs/user-guide/configuring/).
 
 ## Webpack
 
