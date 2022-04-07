@@ -1,5 +1,14 @@
 # 17 Async JavaScript: Promises and Callbacks
 
+JavaScript is an single thread language. The code in Vanilla JS will be executed from top to bottom.
+
+The way in which this is solved to have async code is:
+- The browser engine can have multiple threads. APIs are executed there (http request, navigator geolocation, setTimeout, etc.)
+- The JS engine will send those executions to the browser engine and then continue with the ones define on the JS file.
+- Once the function execution inside the browser is done it will need a callback function to go back to the JS engine.
+- The callback function is stored on the Message Queue, it will be pushed back to the JS engine by the Event Loop whenever possible.
+- Any code on the JS file which is not async will be executed first simply because it does not have to go through all the process (JS engine > Browser API > Message Queue > Event loop).
+
 ## Synchronous code
 
 Code that is performed in a single thread order. Tasks are stack on a queue. Only when a task is done the following one can be started, this blocks operations and results on slow applications. 

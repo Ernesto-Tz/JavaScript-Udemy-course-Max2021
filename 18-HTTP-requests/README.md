@@ -109,8 +109,129 @@ The `XMLHttpRequest()` object allows us to see the status of the response. Based
 
 ## fetch() API
 
-It is a more modern API but not all browsers are using it.
+It is a more modern API but not all browsers are using it (old browsers such as Explorer).
 
 It works around the `fetch()` function.   
-In the simplest form it takes an url and it will create a request with that.
-It gives an stream response 
+In the simplest form it takes a url and it will create a `GET` request with that.   
+It is promise based, we don't have to promisify. The return of `fetch` is a `promise`.   
+It gives an stream response, we have to translate that into a JSON object.
+
+We convert it by calling `.json()` on the response; since it is a promise we have to do it with the use of `then()`.
+
+```JavaScript
+
+// -------Using XMLHttpRequest -----------
+function sendHttpRequest(method, url, data) {
+  const promise = new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+
+    xhr.open(method, url);
+
+    xhr.responseType = 'json';
+
+    xhr.onload = function() {
+      resolve(xhr.response);
+      // const listOfPosts = JSON.parse(xhr.response);
+    };
+
+    xhr.send(JSON.stringify(data));
+  });
+
+  return promise;
+}
+
+// -------Using fetch() -----------
+function sendHttpRequest( url) {
+    return fetch(url);
+}
+
+// -------Using fetch() and converting to JSON -----------
+function sendHttpRequest(url) {
+    return fetch(url).then(response => {
+        return response.json();
+    });
+}
+```
+
+> we also have `response.text()` and `response.blob()` for a file.
+
+### POST & DELETE with `fetch()`
+
+The second parameter from fetch is a JSON object which contains some specifications about the request. We can define inside this object the type of request and the body of the request:
+
+```JavaScript
+function sendHttpRequest(url) {
+    return fetch(url, {
+        method: 'POST',
+        body: {
+            title: 'title',
+            body: 'content',
+            userId: '1'
+        }
+    }).then(response => {
+        return response.json();
+    });
+}
+```
+
+## Adding headers
+
+Some API need extra information such as: which type of data we are sending, what authentication we are using, etc.   
+For these examples we need headers. They are basically metadata.
+
+We doing by adding the header key to the object inside the fetch request:
+
+```JavaScript
+// -------Using fetch() -----------
+function sendHttpRequest(url) {
+    return fetch(url, {
+        method: 'POST',
+        body: {
+            title: 'title',
+            body: 'content',
+            userId: '1'
+        },
+        header: {
+            'Content-Type': 'application/json'
+        }
+    }).then(response => {
+        return response.json();
+    });
+}
+
+// -------Using XMLHttpRequest -----------
+const xhr = new XMLHttpRequest();
+xhr.setRequestHeader('Content-Type','application/json');
+// We can set headers multiple times 
+xhr.setRequestHeader('Content-Type','application/text');
+```
+
+> However, we can't delete the created header.
+
+## Error handling
+
+Watch video 381
+
+## Form Data
+
+Depending the server and API we can send different type of data:
+
+- files
+- binary data
+- FormData - It is actually a constructor inside Javascript with an specific structure.
+
+```JavaScript
+const formD = new formData();
+
+formD.append('title',title);
+formD.append('id',id);
+formD.append('body',body);
+```
+
+We can append files inside or automatically parse a form.
+For it to succeed we will need that the HTML element from the form has a `name` and `id` attributes.
+> Not all API support it.
+
+## Wrap up
+
+`fetch()` is more modern and easy to use but error handling can be a bit tricky.
