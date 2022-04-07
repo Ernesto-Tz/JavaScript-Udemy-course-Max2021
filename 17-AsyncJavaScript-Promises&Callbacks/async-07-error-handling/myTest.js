@@ -20,8 +20,6 @@
 //         console.log(result);
 //     });
 
-// console.log(promise);
-
 function checkIfEqual(a,b){
     const promise = new Promise(function(resolve, reject) {
         // do thing, then…
@@ -35,7 +33,6 @@ function checkIfEqual(a,b){
     });
     return promise;
 }
-  
   
 checkIfEqual(5,5)
     .then((result) => {
@@ -92,3 +89,17 @@ add(2,2)
         // If any part of the chain is rejected, print the error message.
         console.log(err);
     });
+
+//  ----------------Async Await -------------------
+
+async function addAndSubtract(a,b){
+    const addNo1 = await add(a,b);
+    const subtractNo1 = await subtract(addNo1,3);
+    const addNo2 = await add(subtractNo1,5);
+    const result = addNo2 * 2;
+    console.log("My result is (from async)", result);
+}
+
+addAndSubtract(2,2)
+
+// TODO: Can we use await for normal functions as well???????

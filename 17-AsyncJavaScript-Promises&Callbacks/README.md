@@ -124,21 +124,55 @@ console.log('Getting position...'); // Executed normally
 
 ## Async - await
 
-We can only use it in functions. We add the keyword `async` right before the declaration of the function.
+`Async` is used to make code readability better. When we have a Promise call with multiple `then()`/`catch()` calls we wrap all that into a function and add `async`. This function will return a promise.
+
+We use `await` before any promise call inside the `async` function (instead of `then()`).
+
+Example of how the code will change, the following methods do exactly the same:
+
+```JavaScript
+// ---------Normal promise structure-----
+add(2,2)
+    .then((added) => {
+        // added = 4
+        return subtract(added, 3);
+        // console.log(added)
+    })
+    .then((subtracted) => {
+        // subtracted = 1
+        return add(subtracted, 5);
+    })
+    .then((added) => {
+        // added = 6
+        return added * 2;    
+    })
+    .then((result) => {
+        // result = 12
+        console.log("My result is ", result);
+    })
+    .catch((err) => {
+        // If any part of the chain is rejected, print the error message.
+        console.log(err);
+    });
+
+//  ----------------Async Await -------------------
+async function addAndSubtract(a,b){
+    const addNo1 = await add(a,b);
+    const subtractNo1 = await subtract(addNo1,3);
+    const addNo2 = await add(subtractNo1,5);
+    const result = addNo2 * 2;
+    console.log("My result is (from async)", result);
+}
+
+addAndSubtract(2,2)
+```
+
+We can only use it in functions. We add the keyword `async` **right before the declaration of the function.**
 When we declare `async` on a function, JavaScript wraps everything inside that functions and creates a promise with it. It will in fact return a promise by default.  
 It still uses promises; behind the scenes it transforms our code into `then` statements. It is a normal promise with a new syntax which will be transform. 
 It does not change the way JS works, it just changes how it looks. One of the fallbacks is that we lost the `catch` block which allowed us to have error handling, we will do it with a normal `try - catch` block
 
-```JavaScript
-async function trackUserHandler() {
-  // let positionData;
-  const posDate = await getPosition();
-  const timerData = await setTimer(2000);
-  console.log(posData,TimerData);
-}
-```
-
-It is great for writing shorter code. 
+> It is great for writing shorter code. 
 
 ## Promise.race()
 
