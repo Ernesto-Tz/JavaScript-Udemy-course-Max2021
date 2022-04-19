@@ -62,3 +62,73 @@ Configuration ESLint [documentation](https://eslint.org/docs/user-guide/configur
 ## Webpack
 
 Check webpack [documentation](https://webpack.js.org/) or Udemy video 417.
+
+### How to start a webpack project
+
+1. Create a json package inside the project with `npm init`, all dependencies will be stored on this file.
+2. Install webpack wit npm `npm i --save-dev webpack webpack-cli`.
+3. The structure of the project really matters here, we will use a "src" folder (this is not a rule but a convention, here we can store all modules and utilities).
+4. We need to create the entry point file, which is the first file webpack will look at, then it will go through all the modules/dependencies specified there. This usually is a single "index.js" file.
+5. Create the "webpack.config.js" file on the root folder. Here we will give all instructions and needed plugins to webpack:
+
+```javascript
+const path = require('path');
+
+module.exports = {
+  mode: 'development',
+  entry: './src/app.js', // the entry file point 4
+  output: { // The result of webpack
+    filename: 'app.js', 
+    path: path.resolve(__dirname, 'assets', 'scripts'),
+    publicPath: 'assets/scripts/'
+  }
+};
+// This is an example of a very simple project
+```
+
+6. Add an npm script in the package.json to run webpack. Usually we use the "build" instruction:
+
+```javascript
+{
+  "scripts": {
+    "build": "webpack --config webpack.config.js"
+  },
+  "devDependencies": {
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
+  }
+}
+```
+
+7. Run webpack with `npm run build`.
+8. Add the script result to html `<script src="assets/scripts/app.js"></script>`
+
+After this we can add loaders such as **Babel** or **Sass** and also plugins for images or css.
+
+More information on plugins and loaders [here](https://dev.to/antonmelnyk/how-to-configure-webpack-from-scratch-for-a-basic-website-46a5).
+
+### Add webpack dev server
+
+1. Run the command `npm install --save-dev webpack-dev-server`
+2. On the webpack.config file we can specify where the root html can be found:
+```JavaScript
+module.exports = {
+  mode: 'development',
+  entry: './src/app.js',
+  output: {
+    filename: 'app.js',
+    path: path.resolve(__dirname, 'assets', 'scripts'),
+    publicPath: 'assets/scripts/'
+  },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'public'), // define the index.html path
+    },
+    compress: true, // compresses the local host address
+    port: 9000,
+  },
+```
+3. On the package.json file we can specify the script `"build:dev": "webpack-dev-server"`
+4. Run the server with the command `npm run build:dev`
+
+More information on webpack server [here](https://webpack.js.org/configuration/dev-server/).
