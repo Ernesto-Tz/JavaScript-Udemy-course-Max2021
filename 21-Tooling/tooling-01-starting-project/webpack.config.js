@@ -8,5 +8,11 @@ module.exports = {
     filename: 'app.js',
     path: path.resolve(__dirname, 'assets', 'scripts'),
     publicPath: 'assets/scripts/'
+  },
+  devServer: {
+    static: {
+      directory: path.join(__dirname) // define the index.html path
+    },
+    port: 9000
   }
 };
