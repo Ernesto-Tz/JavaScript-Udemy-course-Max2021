@@ -61,7 +61,7 @@ Configuration ESLint [documentation](https://eslint.org/docs/user-guide/configur
 
 ## Webpack
 
-Check webpack [documentation](https://webpack.js.org/) or Udemy video 417.
+Check webpack [online documentation](https://webpack.js.org/), [internal documentation]('./webpack.md') or Udemy video 417.
 
 ### How to start a webpack project
 

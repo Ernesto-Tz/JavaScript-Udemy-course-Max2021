@@ -38,12 +38,12 @@ for (let i = 0; i < cars.length; i++) {
 }
 
 //2.
-for (const car of cars) {
+for-of (const car of cars) {
     console.log(car);
 }
 
 //3.
-for (const value in car1) {
+for-in (const value in car1) {
     console.log(value);
 }
 
