@@ -66,7 +66,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js' //Entry is an object it can use the name given to that file in this case "bundle"
+    filename: '[name].js' //Since entry is an object it can use the name given to that file in this case "bundle"
   },
 };
 ```
@@ -108,9 +108,9 @@ module: {
 },
 plugins: [
   new HtmlWebpackPlugin({
-    title: 'New App',//we can call this title dinamically point 4.
-    filename: 'index.html',//filename of the output
-    template: 'src/main.html'//entry point, template to start from
+    title: 'New App', // we can call this title dynamically (point 4).
+    filename: 'index.html', // filename of the output
+    template: 'src/main.html' // entry point, template to start from
   }),
 ]
 ```
@@ -138,3 +138,49 @@ devServer: {
 
 [GitHub repository](#)
 
+## Typescript
+
+We can add type script by following these steps given by [webpack](https://webpack.js.org/guides/typescript/):
+
+1. Install TypeScript by running `npm install --save-dev typescript ts-loader`
+2. Modify the directory structure & config files:
+- Add a `tsconfig.json` file to the root folder and a `index.ts` to the **src** folder.
+3. Add the following on the `tsconfig.json` file:
+```JavaScript
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    // "rootDir": "./src",
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
+    "moduleResolution": "node"
+  }
+}
+```
+4. Update the `webpack.config.js` file:
+```JavaScript
+const path = require('path');
+
+module.exports = {
+  entry: './src/index.ts',
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+    ],
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+  },
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+};
+``` 
