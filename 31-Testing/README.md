@@ -14,3 +14,5 @@ Types of test:
 - Test runner: Executes tests and summarizes results. (Mocha, Jest)
 - Assertion Library: Defines testing logic conditions. (Chai, Jest)
 - Headless browser: Simulates browser interaction (Puppeteer)
+
+
