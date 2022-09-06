@@ -27,7 +27,7 @@ Tools for debugging
 
 Syntax for loops and tips.
 
-## [5. Changes from ES5 to ES6](./05JavaScriptEngines/README.md)
+## [5. Changes from ES5 to ES6](./05-JavaScriptEngines/README.md)
 
 ### let, const, ver
 ### Hoisting 
