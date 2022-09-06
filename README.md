@@ -6,33 +6,33 @@ JavaScript: what it is, how it is executed, history, etc.
 
 ## [2. Basics](./02-Basics/README.md)
 
-### String concatenation
-### Parse string to Int
-### Methods for string
-### Defer
-### How to compare variables
-### Ternary Operator
-### Truthy, Falsy
-### Tricks with Boolean operators
+- String concatenation
+- Parse string to Int
+- Methods for string
+- Defer
+- How to compare variables
+- Ternary Operator
+- Truthy, Falsy
+- Tricks with Boolean operators
+
 ## 3. Debugging
 
 Tools for debugging
 
 ## [4. Loops & Statements](./04-Loops&Structures/README.md)
-### For loops
-### Switch
-### Label Statement
-### Custom error
-### Try, catch & finally
 
-Syntax for loops and tips.
+- For loops
+- Switch
+- Label Statement
+- Custom error
+- Try, catch & finally
 
 ## [5. Changes from ES5 to ES6](./05-JavaScriptEngines/README.md)
 
-### let, const, ver
-### Hoisting 
-### Strict Mode
-### How code is Parsed and Compiled
-### How code gets executed?
-### Primitive vs Reference Values
-## Garbage Collection 
+- let, const, ver
+- Hoisting 
+- Strict Mode
+- How code is Parsed and Compiled
+- How code gets executed?
+- Primitive vs Reference Values
+- Garbage Collection 
